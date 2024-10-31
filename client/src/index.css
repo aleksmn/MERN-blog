@@ -1,68 +1,131 @@
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
+.navbar {
+  width: 100%;
+  height: 40px;
+  padding: 15px 25px;
+  color: #efefef;
   display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #000000;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+.link {
+  color: white;
+  text-decoration: none;
+  margin: 0px 10px;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
+.signup_container, .post_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 90vh;
+}
+
+.signup_form {
+  border: 1px solid gray;
+  padding: 20px;
+  border-radius: 10px;
+  width: 30%;
+}
+.signup_form form input{
+  padding: 8px;
+  border-radius: 5px;
+  margin-top: 2px;
+  width: 100%;
+  border: 1px solid rgb(216, 213, 213);
+}
+
+.signup_form form button, .signup_form button {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: border-color 0.25s;
+  border: 1px solid rgb(216, 213, 213);
+
 }
-button:hover {
-  border-color: #646cff;
+.signup_form form button {
+  background-color: rgb(17, 80, 227);
+  color: white;
 }
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.signup_form button {
+  background-color: rgb(3, 177, 18);
+  color: white;
+}
+.signup_btn {
+  margin-top: 8px;
+  cursor: pointer;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.btn_input {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.post_form {
+  width: 50%;
+  border: 1px solid gray;
+  padding: 20px;
+}
+.post_form input, .post_form textarea, .post_form button {
+  width: 100%;
+  margin: 10px 0px;
+  padding: 8px;
+}
+.post_form .file {
+  border: 1px solid gray;
+}
+.post_form button {
+  cursor: pointer;
+  background-color: green;
+  color: white;
+}
+
+.posts_container {
+  display: flex;
+  margin-top: 20px;
+  flex-direction: column;
+  align-items: center;
+}
+
+.post {
+  width: 80%;
+  margin: 10px;
+  border: 1px solid gray;
+  padding: 10px;
+  display: flex;
+  text-decoration: none;
+  color: black;
+}
+.post img {
+  width: 200px;
+  height: 200px;
+}
+.post .post_text {
+  margin-left: 10px;
+}
+.post_post {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 20px 0px;
+}
+
+.post_post img {
+  width: 100%;
+  height: 450px;
+}
+
+.post_post button {
+  width: 10%;
 }
