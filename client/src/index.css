@@ -49,14 +49,14 @@
   border-radius: 5px;
   cursor: pointer;
   border: 1px solid rgb(216, 213, 213);
-
+  font-weight: bold;
 }
 .signup_form form button {
-  background-color: rgb(17, 80, 227);
+  background-color: rgb(27, 94, 175);
   color: white;
 }
 .signup_form button {
-  background-color: rgb(3, 177, 18);
+  background-color: rgb(41, 182, 53);
   color: white;
 }
 .signup_btn {

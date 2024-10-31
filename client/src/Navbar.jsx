@@ -1,4 +1,6 @@
-function Navbar() {
+import { Link, useNavigate } from 'react-router-dom'
+
+const Navbar = () =>  {
     return (
         <nav className="navbar">
             <h3>MERN Blog App</h3>
@@ -7,7 +9,7 @@ function Navbar() {
                 <a href="" className='link'>Create</a>
                 <a href="" className='link'>Contact</a>
             </div>
-            <div>Register/Login</div>
+            <div><Link to="/register" className="link">Register/Login</Link></div>
         </nav>
     )
 }
