@@ -47,7 +47,7 @@ app.post('/register', (req, res) => {
     bcrypt.hash(password, 10)
     .then(hash => {
         UserModel.create({username, email, password: hash})
-        .then(user => res.json(user))
+        .then(user => res.status(201).json({ message: 'User created, awaiting approval' }))
         .catch(err => res.json(err))
     }).catch(err => console.log(err))
     
@@ -55,10 +55,12 @@ app.post('/register', (req, res) => {
 
 app.post('/login', (req, res) => {
     const {email, password} = req.body;
-    console.log(email);
     UserModel.findOne({email: email})
     .then(user => {
-        if(user) {
+        if (!user) {
+            return res.json("User not exist")
+        }
+        else if(user && user.approved) {
             bcrypt.compare(password, user.password, (err, response) => {
                 if(response) {
                     const token = jwt.sign({email: user.email, username: user.username},
@@ -70,7 +72,7 @@ app.post('/login', (req, res) => {
                 }
             })
         } else {
-            return res.json("User not exist")
+            return res.json("User is not approved")
         }
     })
 })

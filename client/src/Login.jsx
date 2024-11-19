@@ -13,6 +13,8 @@ function Login() {
         .then(res => {
             if(res.data === "Success") {
                 window.location.href = "/"
+            } else {
+                alert(res.data)
             }
         })
         .catch(err => console.log(err))

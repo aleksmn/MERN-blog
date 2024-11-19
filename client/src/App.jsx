@@ -18,7 +18,6 @@ function App() {
   useEffect(() => {
     axios.get('http://localhost:3001/')
     .then(user => {
-      console.log(user)
       setUser(user.data)
     })
     .catch(err => console.log(err))
