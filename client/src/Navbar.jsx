@@ -8,12 +8,11 @@ const Navbar = () => {
     const navigate = useNavigate()
 
     const handleLogout = () => {
-        console.log("logout")
-        // axios.get('http://localhost:3001/logout')
-        // .then(res => {
-        //     if(res.data === "Success")
-        //     navigate(0)
-        // }).catch(err => console.log(err))
+        axios.get('http://localhost:3001/logout')
+        .then(res => {
+            if(res.data === "Success")
+            navigate(0)
+        }).catch(err => console.log(err))
     }
 
     return (
@@ -31,6 +30,7 @@ const Navbar = () => {
             {
             user.username ?
             <div>
+                <span>{user.username}</span>&nbsp;
                 <input type="button" onClick={handleLogout} value="Logout" className='btn_input'/>
             </div>
             :

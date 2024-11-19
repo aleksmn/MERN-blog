@@ -75,6 +75,10 @@ app.post('/login', (req, res) => {
     })
 })
 
+app.get('/logout', (req, res) => {
+    res.clearCookie('token')
+    return res.json("Success")
+})
 
 app.listen(3001, () => {
     console.log("Server is Running")
