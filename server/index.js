@@ -7,7 +7,7 @@ const cookieParser = require('cookie-parser')
 const multer = require('multer')
 const path = require('path')
 const UserModel = require('./models/UserModel')
-// const PostModel = require('./models/PostModel')
+const PostModel = require('./models/PostModel')
 
 const app = express()
 app.use(express.json())
@@ -81,6 +81,27 @@ app.get('/logout', (req, res) => {
     res.clearCookie('token')
     return res.json("Success")
 })
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'Public/Images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.fieldname + "_" + Date.now() + path.extname(file.originalname))
+    }
+})
+
+const upload = multer({
+    storage: storage
+})
+
+app.post('/create', verifyUser, upload.single('file'), (req, res) => {
+    PostModel.create({title: req.body.title, 
+        description: req.body.description, 
+        file: req.file.filename, email: req.body.email})
+        .then(result => res.json("Success"))
+        .catch(err => res.json(err))
+} )
 
 app.listen(3001, () => {
     console.log("Server is Running")
