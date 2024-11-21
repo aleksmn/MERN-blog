@@ -81,6 +81,7 @@
   width: 100%;
   margin: 10px 0px;
   padding: 8px;
+  resize: none;
 }
 .post_form .file {
   border: 1px solid gray;
