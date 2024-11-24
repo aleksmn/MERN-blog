@@ -17,7 +17,7 @@ app.use(cors({
     credentials: true
 }))
 app.use(cookieParser())
-
+app.use(express.static('public'))
 
 mongoose.connect('mongodb://localhost:27017/blog')
 
@@ -102,6 +102,14 @@ app.post('/create', verifyUser, upload.single('file'), (req, res) => {
         .then(result => res.json("Success"))
         .catch(err => res.json(err))
 } )
+
+
+app.get('/getposts', (req, res) => {
+    PostModel.find()
+    .then(posts => res.json(posts))
+    .catch(err => res.json(err))
+})
+
 
 app.listen(3001, () => {
     console.log("Server is Running")
