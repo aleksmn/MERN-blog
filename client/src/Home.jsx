@@ -25,6 +25,7 @@ function Home() {
           <img src={`http://localhost:3001/images/${post.file}`} alt="" />
           <div className='post_text'>
             <h2>{post.title}</h2>
+            <small>by <b>{post.email}</b></small>
             <p>{post.description}</p>
           </div>
           

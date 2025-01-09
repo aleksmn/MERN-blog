@@ -30,17 +30,18 @@ function CreatePost() {
       <div className="post_form">
         <form onSubmit={handleSubmit}>
             <h2>Create Post</h2>
-          <input type="text" placeholder="Enter Title" onChange={e => setTitle(e.target.value)}/>
+          <input type="text" placeholder="Enter Title" required onChange={e => setTitle(e.target.value)}/>
           <textarea
             name="desc"
             id="desc"
             cols="30"
             rows="10"
+            required
             placeholder="Enter Description"
             onChange={e => setDescription(e.target.value)}
           ></textarea>
           <input type="file" className="file" placeholder="Select File" 
-          onChange={e => setFile(e.target.files[0])}/>
+          onChange={e => setFile(e.target.files[0])} required/>
           <button>Post</button>
         </form>
       </div>

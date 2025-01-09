@@ -21,6 +21,7 @@ app.use(express.static('public'))
 
 mongoose.connect('mongodb://localhost:27017/blog')
 
+
 const verifyUser = (req, res, next) => {
     const token = req.cookies.token;
     if(!token) {
