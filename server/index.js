@@ -96,11 +96,16 @@ const upload = multer({
 })
 
 app.post('/create', verifyUser, upload.single('file'), (req, res) => {
-    PostModel.create({title: req.body.title, 
-        description: req.body.description, 
-        file: req.file.filename, email: req.body.email})
-        .then(result => res.json("Success"))
-        .catch(err => res.json(err))
+    PostModel.create(
+        {
+            title: req.body.title, 
+            description: req.body.description, 
+            file: req.file.filename, 
+            email: req.body.email
+        }
+    )
+    .then(result => res.json("Success"))
+    .catch(err => res.json(err))
 } )
 
 app.listen(3001, () => {
