@@ -19,7 +19,7 @@ const Navbar = () => {
         <nav className="navbar">
             <h3>MERN Blog App</h3>
             <div>
-                <a href="" className='link'>Home</a>
+                <a href="/" className='link'>Home</a>
                 {
                     user.username ?
                         <Link to="/create" className='link'>Create</Link>

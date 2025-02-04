@@ -1,5 +1,5 @@
 import axios from 'axios'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { userContext } from './App'
 
@@ -14,11 +14,11 @@ function Post() {
         axios.get('http://localhost:3001/getpostbyid/'+id)
         .then(result=> setPost(result.data))
         .catch(err => console.log(err))
-    }, [])
+    })
 
     const handleDelete = (id) => {
         axios.delete('http://localhost:3001/deletepost/'+id)
-        .then(result=> {
+        .then(()=> {
             navigate('/')
         })
         .catch(err => console.log(err))
@@ -27,15 +27,15 @@ function Post() {
   return (
     <div className='post_container'>
         <div className='post_post'>
-            <img src={`http://localhost:3001/Images/${post.file}`} alt="" />
+            <img src={`http://localhost:3001/images/${post.file}`} alt="" />
             <h1>{post.title}</h1>
             <p>{post.description}</p>
             <div>
                 {
                     user.email === post.email ? 
                     <>
-                    <Link to={`/editpost/${post._id}`}>Edit</Link>
-                    <button onClick={e => handleDelete(post._id)}>Delete</button>
+                    <button><Link className='btn' to={`/editpost/${post._id}`}>Edit</Link></button>
+                    <button className='btn' onClick={() => handleDelete(post._id)}>Delete</button>
                     </> : <></>
                 }
                 
