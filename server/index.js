@@ -11,11 +11,19 @@ const PostModel = require('./models/PostModel')
 
 const app = express()
 app.use(express.json())
-app.use(cors({
-    origin: ["http://localhost:5173"],
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true
-}))
+
+// Enable All CORS Requests
+app.use(cors())
+
+
+// Example CORS
+// app.use(cors({
+//     origin: ["http://localhost:5173"],
+//     methods: ["GET", "POST", "PUT", "DELETE"],
+//     credentials: true
+// }))
+
+
 app.use(cookieParser())
 app.use(express.static('public'))
 
