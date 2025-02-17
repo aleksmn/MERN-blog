@@ -129,6 +129,7 @@ app.get('/getpostbyid/:id', (req, res) => {
 
 app.put('/editpost/:id', (req, res) => {
     const id = req.params.id;
+    console.log(req.body)
     PostModel.findByIdAndUpdate(
         {_id: id},{ 
         title: req.body.title, 

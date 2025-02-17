@@ -1,38 +1,32 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 function EditPost() {
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
-    const [file, setFile] = useState()
     const {id} = useParams()
-    const navigate = useNavigate()
-
-    useEffect(() => {
-        axios.get('http://localhost:3001/getpostbyid/'+id)
-        .then(result=> {
-            setTitle(result.data.title)
-            setDescription(result.data.description)
-        })
-        .catch(err => console.log(err))
-    })
 
     const handleSubmit = (e) => {
       e.preventDefault()
-      const formData = new FormData()
-      formData.append('title', title)
-      formData.append('description', description)
 
-      axios.post('http://localhost:3001/editpost/' + id, formData)
+      axios.put('http://localhost:3001/editpost/' + id, {title, description})
       .then(res => {
           if(res.data === "Success") {
               window.location.href = "/"
           }
       })
       .catch(err => console.log(err))
-  }
+    }
 
+    useEffect(() => {
+      axios.get('http://localhost:3001/getpostbyid/' + id)
+      .then(result=> {
+          setTitle(result.data.title)
+          setDescription(result.data.description)
+      })
+      .catch(err => console.log(err))
+  }, [id]); 
 
 
   return (
