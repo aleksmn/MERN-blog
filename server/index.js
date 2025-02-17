@@ -9,12 +9,16 @@ const path = require('path')
 const UserModel = require('./models/UserModel')
 const PostModel = require('./models/PostModel')
 
+require('dotenv').config();
+
+const PORT = process.env.PORT;
+
 const app = express()
 app.use(express.json())
 
 
 app.use(cors({
-    origin: ["http://localhost:5173", "http://al-mn.fvds.ru/"],
+    origin: process.env.FRONTEND_URL,
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true
 }))
@@ -23,7 +27,7 @@ app.use(cors({
 app.use(cookieParser())
 app.use(express.static('public'))
 
-mongoose.connect('mongodb://localhost:27017/blog')
+mongoose.connect(process.env.MONGODB_URI)
 
 
 const verifyUser = (req, res, next) => {
@@ -31,7 +35,7 @@ const verifyUser = (req, res, next) => {
     if(!token) {
         return res.json("The token is missing")
     } else {
-        jwt.verify(token, "jwt-secret-key", (err, decoded) => {
+        jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
             if(err) {
                 return res.json("The token is wrong")
             } else {
@@ -69,7 +73,7 @@ app.post('/login', (req, res) => {
             bcrypt.compare(password, user.password, (err, response) => {
                 if(response) {
                     const token = jwt.sign({email: user.email, username: user.username},
-                        "jwt-secret-key", {expiresIn: '1d'})
+                        process.env.JWT_SECRET, {expiresIn: '1d'})
                     res.cookie('token', token)
                     return res.json("Success")
                 } else {
@@ -140,6 +144,6 @@ app.delete('/deletepost/:id', (req, res) => {
 })
 
 
-app.listen(3001, () => {
-    console.log("Server is Running")
+app.listen(PORT, () => {
+    console.log("Server is Running on PORT:", PORT)
 })
