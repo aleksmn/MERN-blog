@@ -34,7 +34,7 @@ function EditPost() {
       <div className="post_form">
         <form onSubmit={handleSubmit}>
             <h2>Update Post</h2>
-          <input type="text" placeholder="Enter Title" defaultValue={title} required onChange={e => setTitle(e.target.value)}/>
+          <input type="text" placeholder="Enter Title" value={title} required onChange={e => setTitle(e.target.value)}/>
           <textarea
             name="desc"
             id="desc"
@@ -42,7 +42,7 @@ function EditPost() {
             rows="10"
             required
             placeholder="Enter Description"
-            defaultValue={description}
+            value={description}
             onChange={e => setDescription(e.target.value)}
           ></textarea>
           <button>Update</button>

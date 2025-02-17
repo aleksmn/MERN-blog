@@ -34,7 +34,7 @@ function Post() {
                 {
                     user.email === post.email ? 
                     <>
-                    <button><Link className='btn' to={`/editpost/${post._id}`}>Edit</Link></button>
+                    <Link className='btn' to={`/editpost/${post._id}`}><button>Edit</button></Link>
                     <button className='btn' onClick={() => handleDelete(post._id)}>Delete</button>
                     </> : <></>
                 }
