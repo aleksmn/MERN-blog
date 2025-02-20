@@ -11,13 +11,13 @@ function Post() {
 
 
     useEffect(() => {
-        axios.get('http://localhost:3001/getpostbyid/'+id)
+        axios.get('/api/getpostbyid/'+id)
         .then(result=> setPost(result.data))
         .catch(err => console.log(err))
     })
 
     const handleDelete = (id) => {
-        axios.delete('http://localhost:3001/deletepost/'+id)
+        axios.delete('/api/deletepost/'+id)
         .then(()=> {
             navigate('/')
         })
@@ -27,7 +27,7 @@ function Post() {
   return (
     <div className='post_container'>
         <div className='post_post'>
-            <img src={`http://localhost:3001/images/${post.file}`} alt="" />
+            <img src={`/api/images/${post.file}`} alt="" />
             <h1>{post.title}</h1>
             <p>{post.description}</p>
             <div>

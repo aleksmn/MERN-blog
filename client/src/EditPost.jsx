@@ -10,7 +10,7 @@ function EditPost() {
     const handleSubmit = (e) => {
       e.preventDefault()
 
-      axios.put('http://localhost:3001/editpost/' + id, {title, description})
+      axios.put('/api/editpost/' + id, {title, description})
       .then(res => {
           if(res.data === "Success") {
               window.location.href = "/"
@@ -20,7 +20,7 @@ function EditPost() {
     }
 
     useEffect(() => {
-      axios.get('http://localhost:3001/getpostbyid/' + id)
+      axios.get('/api/getpostbyid/' + id)
       .then(result=> {
           setTitle(result.data.title)
           setDescription(result.data.description)
