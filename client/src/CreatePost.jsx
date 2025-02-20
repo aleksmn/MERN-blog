@@ -2,6 +2,8 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import {userContext} from './App'
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 function CreatePost() {
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
@@ -16,7 +18,7 @@ function CreatePost() {
         formData.append('email', user.email)
         formData.append('file', file)
 
-        axios.post('/api/create', formData)
+        axios.post(apiUrl+'/create', formData)
         .then(res => {
             if(res.data === "Success") {
                 window.location.href = "/"

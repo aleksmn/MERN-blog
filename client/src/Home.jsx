@@ -2,13 +2,14 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
 
 function Home() {
 
   const [posts, setPosts] = useState([])
 
   useEffect(() => {
-    axios.get('/api/getposts')
+    axios.get(apiUrl + '/getposts')
     .then(posts => {
       setPosts(posts.data)
       console.log(posts)
@@ -22,7 +23,7 @@ function Home() {
         posts.map(post => (
           <Link key={post._id} to={`/post/${post._id}`} className='post'> 
           
-          <img src={`/api/images/${post.file}`} alt="" />
+          <img src={`${apiUrl}/images/${post.file}`} alt="" />
           <div className='post_text'>
             <h2>{post.title}</h2>
             <small>by <b>{post.email}</b></small>

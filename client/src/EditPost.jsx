@@ -2,6 +2,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 function EditPost() {
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
@@ -10,7 +12,7 @@ function EditPost() {
     const handleSubmit = (e) => {
       e.preventDefault()
 
-      axios.put('/api/editpost/' + id, {title, description})
+      axios.put(apiUrl+'/editpost/' + id, {title, description})
       .then(res => {
           if(res.data === "Success") {
               window.location.href = "/"
@@ -20,7 +22,7 @@ function EditPost() {
     }
 
     useEffect(() => {
-      axios.get('/api/getpostbyid/' + id)
+      axios.get(apiUrl+'/getpostbyid/' + id)
       .then(result=> {
           setTitle(result.data.title)
           setDescription(result.data.description)
@@ -42,7 +44,7 @@ function EditPost() {
             rows="10"
             required
             placeholder="Enter Description"
-            value={description}
+            defaultValue={description}
             onChange={e => setDescription(e.target.value)}
           ></textarea>
           <button>Update</button>

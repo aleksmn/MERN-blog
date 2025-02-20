@@ -11,6 +11,8 @@ import EditPost from "./EditPost"
 
 export const userContext = createContext()
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 function App() {
   const [user, setUser] = useState({
     username: null,
@@ -19,7 +21,7 @@ function App() {
 
   axios.defaults.withCredentials = true;
   useEffect(() => {
-    axios.get('/api/')
+    axios.get(apiUrl)
     .then(user => {
       setUser(user.data)
     })

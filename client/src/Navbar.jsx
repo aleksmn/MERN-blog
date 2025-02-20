@@ -3,12 +3,14 @@ import { Link, useNavigate } from 'react-router-dom'
 import { userContext } from './App'
 import axios from 'axios'
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 const Navbar = () => {
     const user = useContext(userContext)
     const navigate = useNavigate()
 
     const handleLogout = () => {
-        axios.get('/api/logout')
+        axios.get(apiUrl+'/logout')
         .then(res => {
             if(res.data === "Success")
             navigate(0)

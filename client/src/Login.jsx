@@ -2,6 +2,8 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 function Login() {
     const [email, setEmail] = useState()
     const [password, setPassword] = useState()
@@ -9,7 +11,7 @@ function Login() {
     axios.defaults.withCredentials = true;
     const handleSubmit = (e) => {
         e.preventDefault()
-        axios.post('/api/login', {email, password})
+        axios.post(apiUrl+'/login', {email, password})
         .then(res => {
             if(res.data === "Success") {
                 window.location.href = "/"

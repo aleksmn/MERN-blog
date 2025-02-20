@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { userContext } from './App'
 
+const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+
 function Post() {
     const {id} = useParams()
     const [post, setPost] = useState({})
@@ -11,13 +13,13 @@ function Post() {
 
 
     useEffect(() => {
-        axios.get('/api/getpostbyid/'+id)
+        axios.get(apiUrl+'/getpostbyid/'+id)
         .then(result=> setPost(result.data))
         .catch(err => console.log(err))
     })
 
     const handleDelete = (id) => {
-        axios.delete('/api/deletepost/'+id)
+        axios.delete(apiUrl+'/api/deletepost/'+id)
         .then(()=> {
             navigate('/')
         })
@@ -27,7 +29,7 @@ function Post() {
   return (
     <div className='post_container'>
         <div className='post_post'>
-            <img src={`/api/images/${post.file}`} alt="" />
+            <img src={apiUrl+`/images/${post.file}`} alt="" />
             <h1>{post.title}</h1>
             <p>{post.description}</p>
             <div>
