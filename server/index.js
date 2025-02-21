@@ -26,7 +26,7 @@ app.use(cors({
 
 app.use(cookieParser())
 // app.use(express.static('public'))
-app.use('/images', express.static(path.join(__dirname, 'public/images')));
+app.use('/api/images', express.static(path.join(__dirname, 'public/images')));
 
 mongoose.connect(process.env.MONGODB_URI)
 
@@ -48,11 +48,11 @@ const verifyUser = (req, res, next) => {
     }
 }
 
-app.get('/',verifyUser, (req, res) => {
+app.get('/api',verifyUser, (req, res) => {
     return res.json({email: req.email, username: req.username})
 })
 
-app.post('/register', (req, res) => {
+app.post('/api/register', (req, res) => {
     const {username, email, password} = req.body;
     bcrypt.hash(password, 10)
     .then(hash => {
@@ -63,7 +63,7 @@ app.post('/register', (req, res) => {
     
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
     const {email, password} = req.body;
     UserModel.findOne({email: email})
     .then(user => {
@@ -87,7 +87,7 @@ app.post('/login', (req, res) => {
     })
 })
 
-app.get('/logout', (req, res) => {
+app.get('/api/logout', (req, res) => {
     res.clearCookie('token')
     return res.json("Success")
 })
@@ -105,7 +105,7 @@ const upload = multer({
     storage: storage
 })
 
-app.post('/create', verifyUser, upload.single('file'), (req, res) => {
+app.post('/api/create', verifyUser, upload.single('file'), (req, res) => {
     PostModel.create({title: req.body.title, 
         description: req.body.description, 
         file: req.file.filename, email: req.body.email})
@@ -114,21 +114,21 @@ app.post('/create', verifyUser, upload.single('file'), (req, res) => {
 } )
 
 
-app.get('/getposts', (req, res) => {
+app.get('/api/getposts', (req, res) => {
     PostModel.find()
     .then(posts => res.json(posts))
     .catch(err => res.json(err))
 })
 
 
-app.get('/getpostbyid/:id', (req, res) => {
+app.get('/api/getpostbyid/:id', (req, res) => {
     const id = req.params.id
     PostModel.findById({_id: id})
     .then(post => res.json(post))
     .catch(err => console.log(err))
 })
 
-app.put('/editpost/:id', (req, res) => {
+app.put('/api/editpost/:id', (req, res) => {
     const id = req.params.id;
     PostModel.findByIdAndUpdate(
         {_id: id},{ 
@@ -138,7 +138,7 @@ app.put('/editpost/:id', (req, res) => {
         .catch(err => res.json(err))
 })
 
-app.delete('/deletepost/:id', (req, res) => {
+app.delete('/api/deletepost/:id', (req, res) => {
     PostModel.findByIdAndDelete({_id: req.params.id})
     .then(result => res.json("Success"))
     .catch(err => res.json(err))

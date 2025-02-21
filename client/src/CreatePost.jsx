@@ -2,7 +2,7 @@ import axios from "axios";
 import { useContext, useState } from "react";
 import {userContext} from './App'
 
-const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function CreatePost() {
     const [title, setTitle] = useState()

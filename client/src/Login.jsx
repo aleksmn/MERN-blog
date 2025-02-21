@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
-const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function Login() {
     const [email, setEmail] = useState()

@@ -3,7 +3,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { userContext } from './App'
 import axios from 'axios'
 
-const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 const Navbar = () => {
     const user = useContext(userContext)

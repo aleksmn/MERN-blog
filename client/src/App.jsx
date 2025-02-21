@@ -11,7 +11,7 @@ import EditPost from "./EditPost"
 
 export const userContext = createContext()
 
-const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:4000';
+const apiUrl = import.meta.env.VITE_API_URL;
 
 function App() {
   const [user, setUser] = useState({
