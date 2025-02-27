@@ -1,7 +1,7 @@
 import axios from 'axios'
 import { useContext, useEffect, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { userContext } from './App'
+import UserContext from './contexts/UserContext';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -9,7 +9,7 @@ function Post() {
     const {id} = useParams()
     const [post, setPost] = useState({})
     const navigate = useNavigate()
-    const user = useContext(userContext)
+    const user = useContext(UserContext)
 
 
     useEffect(() => {

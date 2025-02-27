@@ -1,12 +1,12 @@
 import { useContext } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
-import { userContext } from './App'
+import UserContext from './contexts/UserContext';
 import axios from 'axios'
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
 const Navbar = () => {
-    const user = useContext(userContext)
+    const user = useContext(UserContext)
     const navigate = useNavigate()
 
     const handleLogout = () => {

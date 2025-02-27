@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useContext, useState } from "react";
-import {userContext} from './App'
+import UserContext from './contexts/UserContext';
 
 const apiUrl = import.meta.env.VITE_API_URL;
 
@@ -8,7 +8,7 @@ function CreatePost() {
     const [title, setTitle] = useState()
     const [description, setDescription] = useState()
     const [file, setFile] = useState()
-    const user = useContext(userContext)
+    const user = useContext(UserContext)
 
     const handleSubmit = (e) => {
         e.preventDefault()

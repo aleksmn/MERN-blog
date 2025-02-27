@@ -12,7 +12,6 @@ function Home() {
     axios.get(apiUrl + '/getposts')
     .then(posts => {
       setPosts(posts.data)
-      console.log(posts)
     })
     .catch(err => console.log(err))
   }, [])
